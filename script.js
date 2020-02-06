@@ -1,4 +1,4 @@
-let key = 'f49c9a8b86754d37b682f8d6120ac075'
+let key = config.MY_KEY;
 let searchTerm = 'netflix'
 let url = `https://newsapi.org/v2/everything?` +
           `q=${searchTerm}&` +
