@@ -1,0 +1,40 @@
+form {
+	display: flex;
+}
+
+.search-button {
+	border: none;
+}
+
+.page-title, .search {
+	margin: 2%;
+}
+
+input {
+	padding: 5px;
+	width: 50%;
+}
+
+.central-content {
+	display: flex;
+	flex-direction: row;
+}
+
+.left-button, .right-button {
+	border: none;
+	background-color: white;
+}
+
+.news {
+	display: flex;
+	flex-direction: row;
+}
+
+.news-image {
+	width: 320px;
+	margin: 0 auto;
+}
+
+.news-content {
+	padding: 2%;
+}

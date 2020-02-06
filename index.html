@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Search the news with NewsAPI</title>
+	<link rel="stylesheet" href="style.css" type="text/css">
+	<!-- import the jquery cdn from google -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<h1 class="page-title">Pretraži vijesti</h1>
+	<div class="search">
+		<form>
+			<input class="searchbar" id="searchValue"
+				type="text"
+				placeholder="Pretraži"
+				name="search-field"
+			/>
+			<button class="search-button" id="searchButton">x</button>
+		</form>
+	</div>
+	<div class="central-content">
+		<button class="left-button"><img src="./Asseti/left-arrow.png" alt="left-arrow"/></button>
+		<div class="fetched-article" id="article">
+		</div>
+		<button class="right-button"><img src="./Asseti/right-arrow.png" alt="right-arrow"/></button>
+	</div>
+
+	<script src="script.js"></script>	
+</body>
+</html>
