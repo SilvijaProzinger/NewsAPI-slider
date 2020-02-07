@@ -9,7 +9,7 @@ body {
     margin-right: -50%;
     transform: translate(-50%, -50%);
     */
-    margin: 0 10% 0 10%;
+    margin: 0 5% 0 5%;
 }
 
 
@@ -42,14 +42,14 @@ form {
 
 input {
 	padding: 10px;
-	width: 58%;
+	width: 650px;
 }
 
 .error-text {
 	margin: 4%;
 }
 
-.central-content {
+.slider-outer {
 	display: flex;
 	flex-direction: row;
 }
@@ -61,6 +61,12 @@ input {
 }
 
 .news {
+	overflow: hidden;
+	position: relative;
+	width: 650px;
+}
+
+.news-inner {
 	display: flex;
 	flex-direction: row;
 	height: auto;
@@ -91,9 +97,18 @@ input {
 	font-weight: 400;
 }
 
-a {
+.news-link {
 	text-decoration: none;
 	color: black;
 	border-bottom: 1px solid black;
 	font-weight: 400;
+}
+
+.news-container {
+	display: none;
+}
+
+.active {
+	display: inline-block;
+	z-index: 10;
 }

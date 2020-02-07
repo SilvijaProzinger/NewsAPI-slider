@@ -31,21 +31,54 @@ const fetchNews = (req) => {
 		.done(function(data){
 			console.log(data);
 			let output = ''
+			let newsWidth = 650
+			let newsCount = 5
+
 			$.each(data.articles, function(index, article){
 			    output += `
 			      <article class="news">
-			        <img src="${article.urlToImage}" alt="image article" class="news-image"/>	        	        
-					<div class="news-content">
-						<h2 class="news-title">${article.title}</h2>
-						<h4 class="news-author">${article.author}</h4>
-						<h3 class="news-text">${article.content}</h3>
-						<a href="${article.url}">Pročitaj članak</a>
-					</div>
-				    </article>`;
+				    <div class="news-container">
+				      	<div class="news-inner">
+				      		<img src="${article.urlToImage}" alt="image article" class="news-image"/>	        	        
+				  	  		<div class="news-content">
+								<h2 class="news-title">${article.title}</h2>
+								<h4 class="news-author">${article.author}</h4>
+								<h3 class="news-text">${article.content}</h3>
+								<a href="${article.url}" class="news-link">Pročitaj članak</a>
+				  			</div>
+				    	</div>
+			      	</div>
+				  </article>`;
+
+				$(this).find(".news-inner").first().addClass( "active" );  
 			  });
+
 	 		$('#article').html(output);
 	 		$("#leftButton").css({display: "block"});
 	 		$("#rightButton").css({display: "block"});
+
+	 		//switch between news when clickin on arrows
+	 		$('#leftButton').on('click', function(){
+	 			console.log('clicked')
+	 			let activeNews = $('.active');
+	 			let nextNews = activeNews.next()
+
+	 			if(nextNews.length){
+	 				activeNews.removeClass('active').css('z-index', -10);
+	 				nextNews.addClass('active').css('z-index', 10)
+	 			}
+	 		})
+
+	 		$('#rightButton').on('click', function(){
+	 			console.log('clicked')
+	 			let activeNews = $('.active');
+	 			let previousNews = activeNews.prev()
+
+	 			if(previousNews.length){
+	 				activeNews.removeClass('active').css('z-index', -10);
+	 				previousNews.addClass('active').css('z-index', 10)
+	 			}
+	 		})
 		})
 
 		.fail(function(jqxhr, textStatus, error){
