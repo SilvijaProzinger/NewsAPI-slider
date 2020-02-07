@@ -1,14 +1,16 @@
 let key = config.MY_KEY;
-let searchTerm = 'netflix'
-let url = `https://newsapi.org/v2/everything?` +
+let searchTerm;
+let url;
+
+$('#searchButton').on('click', function(e){
+	e.preventDefault()
+	searchTerm = $("#searchValue").val();
+    url = `https://newsapi.org/v2/everything?` +
           `q=${searchTerm}&` +
           `from=2020-02-06&` +
           `sortBy=popularity&` +
           `pageSize=5&` +
           `apiKey=${key}`;
-
-$('#searchButton').on('click', function(e){
-	e.preventDefault()
 
 	var req = new Request(url);
 
@@ -18,7 +20,8 @@ $('#searchButton').on('click', function(e){
 
 	//to change later
 	else {
-		alert('Please enter a search term and try again')
+		let emptyErr = '<h3 class="error-text">Please enter a search term and try again!</h3>'
+		$('#article').html(emptyErr);
 	}
 
 })
@@ -41,6 +44,8 @@ const fetchNews = (req) => {
 				    </article>`;
 			  });
 	 		$('#article').html(output);
+	 		$("#leftButton").css({display: "block"});
+	 		$("#rightButton").css({display: "block"});
 		})
 
 		.fail(function(jqxhr, textStatus, error){
