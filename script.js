@@ -56,9 +56,9 @@ const fetchNews = (req) => {
 	 		//loop through article"s parent div and add class active to the first article so it shows by default
 	 		$(".slider-inner").each(function(index) {
     			$(this).children(".news:first").addClass("active");
+    			//save first and last article child
     			firstChild = $(this).children(".news:first");
     			lastChild = $(this).children(".news:last")
-    			console.log(firstChild, lastChild)
 			});
 
 	 		//switch between news when clickin on arrows
@@ -67,9 +67,11 @@ const fetchNews = (req) => {
 	 			let activeNews = $(".active");
 	 			let previousNews = activeNews.prev()
 
+	 			/* if we're currently at the first article, make last article in array into previous news so the slider is infinite and remove 
+	 			active class from the first child so it doesn't show alongside previous article */
 	 			if(previousNews.length === 0){
 	 				previousNews = lastChild.addClass("active").css("z-index", 10);
-	 				//activeNews.removeClass("active").css("z-index", -10);
+	 				firstChild.removeClass("active").css("z-index", -10);
 	 			} else {
 	 				activeNews.removeClass("active").css("z-index", -10);
 	 				previousNews.addClass("active").css("z-index", 10)
@@ -81,9 +83,11 @@ const fetchNews = (req) => {
 	 			let activeNews = $(".active");
 	 			let nextNews = activeNews.next()
 
+	 			/* if we're currently at the last article, make first article in array into next news so the slider is infinite and remove 
+	 			active class from the last child so it doesn't show alongside next article */
 	 			if(nextNews.length === 0){
 	 				nextNews = firstChild.addClass("active").css("z-index", 10);
-	 				//activeNews.removeClass("active").css("z-index", -10);
+	 				lastChild.removeClass("active").css("z-index", -10);
 	 			} else {
 	 				activeNews.removeClass("active").css("z-index", -10);
 	 				nextNews.addClass("active").css("z-index", 10)
