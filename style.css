@@ -49,23 +49,38 @@ input {
 	margin: 4%;
 }
 
-.slider-outer {
-	display: flex;
-	flex-direction: row;
-}
-
 .left-button, .right-button {
 	border: none;
 	background-color: white;
 	display: none;
 }
 
+.slider-outer {
+	display: flex;
+	flex-direction: row;
+}
+
+.slider-inner {
+	position: relative;
+	overflow: hidden;
+	float: left;
+}
+
 .news {
+	display: none;
+}
+
+.active {
+	display: inline-block;
+	z-index: 10;
+}
+
+/*.news {
 	overflow: hidden;
 	position: relative;
 	width: 650px;
 }
-
+*/ 
 .news-inner {
 	display: flex;
 	flex-direction: row;
@@ -104,11 +119,3 @@ input {
 	font-weight: 400;
 }
 
-.news-container {
-	display: none;
-}
-
-.active {
-	display: inline-block;
-	z-index: 10;
-}

@@ -36,8 +36,7 @@ const fetchNews = (req) => {
 
 			$.each(data.articles, function(index, article){
 			    output += `
-			      <article class="news">
-				    <div class="news-container">
+			      	<article class="news active">
 				      	<div class="news-inner">
 				      		<img src="${article.urlToImage}" alt="image article" class="news-image"/>	        	        
 				  	  		<div class="news-content">
@@ -47,10 +46,9 @@ const fetchNews = (req) => {
 								<a href="${article.url}" class="news-link">Pročitaj članak</a>
 				  			</div>
 				    	</div>
-			      	</div>
-				  </article>`;
+				  	</article>`;
 
-				$(this).find(".news-inner").first().addClass( "active" );  
+				//$(this).find(".news-inner").first().addClass( "active" );  
 			  });
 
 	 		$('#article').html(output);
@@ -61,22 +59,22 @@ const fetchNews = (req) => {
 	 		$('#leftButton').on('click', function(){
 	 			console.log('clicked')
 	 			let activeNews = $('.active');
-	 			let nextNews = activeNews.next()
+	 			let previousNews = activeNews.prev()
 
-	 			if(nextNews.length){
+	 			if(previousNews.length){
 	 				activeNews.removeClass('active').css('z-index', -10);
-	 				nextNews.addClass('active').css('z-index', 10)
+	 				previousNews.addClass('active').css('z-index', 10)
 	 			}
 	 		})
 
 	 		$('#rightButton').on('click', function(){
 	 			console.log('clicked')
 	 			let activeNews = $('.active');
-	 			let previousNews = activeNews.prev()
+	 			let nextNews = activeNews.next()
 
-	 			if(previousNews.length){
+	 			if(nextNews.length){
 	 				activeNews.removeClass('active').css('z-index', -10);
-	 				previousNews.addClass('active').css('z-index', 10)
+	 				nextNews.addClass('active').css('z-index', 10)
 	 			}
 	 		})
 		})
