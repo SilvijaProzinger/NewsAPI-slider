@@ -36,7 +36,7 @@ const fetchNews = (req) => {
 
 			$.each(data.articles, function(index, article){
 			    output += `
-			      	<article class="news active">
+			      	<article class="news">
 				      	<div class="news-inner">
 				      		<img src="${article.urlToImage}" alt="image article" class="news-image"/>	        	        
 				  	  		<div class="news-content">
@@ -46,14 +46,17 @@ const fetchNews = (req) => {
 								<a href="${article.url}" class="news-link">Pročitaj članak</a>
 				  			</div>
 				    	</div>
-				  	</article>`;
-
-				//$(this).find(".news-inner").first().addClass( "active" );  
-			  });
+				  	</article>`; 
+			});
 
 	 		$('#article').html(output);
 	 		$("#leftButton").css({display: "block"});
 	 		$("#rightButton").css({display: "block"});
+
+	 		//loop through article's parent div and add class active to the first article so it shows by default
+	 		$(".slider-inner").each(function(index) {
+    			$(this).children(".news:first").addClass("active");
+			});
 
 	 		//switch between news when clickin on arrows
 	 		$('#leftButton').on('click', function(){
