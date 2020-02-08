@@ -2,7 +2,7 @@ let key = config.MY_KEY;
 let searchTerm;
 let url;
 
-$('#searchButton').on('click', function(e){
+$("#searchButton").on("click", function(e){
 	e.preventDefault()
 	searchTerm = $("#searchValue").val();
     url = `https://newsapi.org/v2/everything?` +
@@ -14,14 +14,14 @@ $('#searchButton').on('click', function(e){
 
 	var req = new Request(url);
 
-	if (searchTerm !== ''){
+	if (searchTerm !== ""){
 		fetchNews(req)
 	}
 
 	//to change later
 	else {
 		let emptyErr = '<h3 class="error-text">Please enter a search term and try again!</h3>'
-		$('#article').html(emptyErr);
+		$("#article").html(emptyErr);
 	}
 
 })
@@ -30,9 +30,9 @@ const fetchNews = (req) => {
 	$.getJSON(url)
 		.done(function(data){
 			console.log(data);
-			let output = ''
-			let newsWidth = 650
-			let newsCount = 5
+			let output = ""
+			let lastChild;
+			let firstChild;
 
 			$.each(data.articles, function(index, article){
 			    output += `
@@ -49,35 +49,44 @@ const fetchNews = (req) => {
 				  	</article>`; 
 			});
 
-	 		$('#article').html(output);
+	 		$("#article").html(output);
 	 		$("#leftButton").css({display: "block"});
 	 		$("#rightButton").css({display: "block"});
 
-	 		//loop through article's parent div and add class active to the first article so it shows by default
+	 		//loop through article"s parent div and add class active to the first article so it shows by default
 	 		$(".slider-inner").each(function(index) {
     			$(this).children(".news:first").addClass("active");
+    			firstChild = $(this).children(".news:first");
+    			lastChild = $(this).children(".news:last")
+    			console.log(firstChild, lastChild)
 			});
 
 	 		//switch between news when clickin on arrows
-	 		$('#leftButton').on('click', function(){
-	 			console.log('clicked')
-	 			let activeNews = $('.active');
+	 		$("#leftButton").on("click", function(){
+	 			console.log("clicked")
+	 			let activeNews = $(".active");
 	 			let previousNews = activeNews.prev()
 
-	 			if(previousNews.length){
-	 				activeNews.removeClass('active').css('z-index', -10);
-	 				previousNews.addClass('active').css('z-index', 10)
+	 			if(previousNews.length === 0){
+	 				previousNews = lastChild.addClass("active").css("z-index", 10);
+	 				//activeNews.removeClass("active").css("z-index", -10);
+	 			} else {
+	 				activeNews.removeClass("active").css("z-index", -10);
+	 				previousNews.addClass("active").css("z-index", 10)
 	 			}
 	 		})
 
-	 		$('#rightButton').on('click', function(){
-	 			console.log('clicked')
-	 			let activeNews = $('.active');
+	 		$("#rightButton").on("click", function(){
+	 			console.log("clicked")
+	 			let activeNews = $(".active");
 	 			let nextNews = activeNews.next()
 
-	 			if(nextNews.length){
-	 				activeNews.removeClass('active').css('z-index', -10);
-	 				nextNews.addClass('active').css('z-index', 10)
+	 			if(nextNews.length === 0){
+	 				nextNews = firstChild.addClass("active").css("z-index", 10);
+	 				//activeNews.removeClass("active").css("z-index", -10);
+	 			} else {
+	 				activeNews.removeClass("active").css("z-index", -10);
+	 				nextNews.addClass("active").css("z-index", 10)
 	 			}
 	 		})
 		})
