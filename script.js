@@ -47,6 +47,17 @@ const fetchNews = (req) => {
 				  			</div>
 				    	</div>
 				  	</article>`; 
+
+  				var text = $('.news-text').text();
+
+				//limit the lenght of description text to 50 words max
+				let paragraph = text.split(' ').length;
+				
+				if(paragraph > 50) {
+				    let lastWord = text.split(' ')[50];
+				    let lastWordIndex = text.indexOf(lastWord);
+					$(this).text(text.substr(0, lastWordIndex) + '...');
+				}
 			});
 
 	 		$("#article").html(output);
