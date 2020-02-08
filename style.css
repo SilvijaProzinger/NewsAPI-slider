@@ -3,13 +3,7 @@ body {
 }
 
 .search-and-news {
-	/*left: 50%;
-    top: 10%;
-    position: absolute;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    */
-    margin: 0 5% 0 5%;
+    margin: 2% 8% 0 8%;
 }
 
 
@@ -37,12 +31,12 @@ form {
 }
 
 .page-title, .search {
-	margin: 2%;
+	margin: 2% 60px 2% 50px;
 }
 
 input {
 	padding: 10px;
-	width: 650px;
+	width: 100%;
 }
 
 .error-text {
@@ -76,15 +70,10 @@ input {
 	z-index: 10;
 }
 
-/*.news {
-	overflow: hidden;
-	position: relative;
-	width: 650px;
-}
-*/ 
 .news-inner {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: nowrap;
 	height: auto;
 }
 
@@ -120,3 +109,12 @@ input {
 	font-weight: 400;
 }
 
+@media only screen and (max-width: 800px){
+	.news-inner {
+		flex-wrap: wrap;
+	}
+
+	.news-image {
+		width: 100%;
+	}
+}
