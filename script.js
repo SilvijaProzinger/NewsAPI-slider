@@ -7,7 +7,8 @@ $("#searchButton").on("click", function(e){
 	searchTerm = $("#searchValue").val();
     url = `https://newsapi.org/v2/everything?` +
           `q=${searchTerm}&` +
-          `from=2020-02-06&` +
+          `from=2020-02-01&` +
+          `to=2020-02-10&` +
           `sortBy=popularity&` +
           `pageSize=5&` +
           `apiKey=${key}`;
@@ -16,10 +17,7 @@ $("#searchButton").on("click", function(e){
 
 	if (searchTerm !== ""){
 		fetchNews(req)
-	}
-
-	//to change later
-	else {
+	} else {
 		let emptyErr = '<h3 class="error-text">Please enter a search term and try again!</h3>'
 		$("#article").html(emptyErr);
 	}
@@ -48,7 +46,7 @@ const fetchNews = (req) => {
 				    	</div>
 				  	</article>`; 
 
-  				var text = $('.news-text').text();
+  				let text = $('.news-text').text();
 
 				//limit the lenght of description text to 50 words max
 				let paragraph = text.split(' ').length;
@@ -64,7 +62,7 @@ const fetchNews = (req) => {
 	 		$("#leftButton").css({display: "block"});
 	 		$("#rightButton").css({display: "block"});
 
-	 		//loop through article"s parent div and add class active to the first article so it shows by default
+	 		//loop through article's parent div and add class active to the first article so it shows by default
 	 		$(".slider-inner").each(function(index) {
     			$(this).children(".news:first").addClass("active");
     			//save first and last article child
